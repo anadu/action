@@ -1,0 +1,15 @@
+name : kishore
+on: workflow_dispatch
+jobs:
+  manualjob:
+  runs_on: ubuntu-latest
+  steps:
+    - name: firstjob
+      run: echo "helloworld"
+    - name: second job
+      run: echo "I am learning github actions"
+  seconjob:
+  runs_on: ubuntu_latest
+  steps:
+    - name: tird job
+      run: echo"thisrjob"
