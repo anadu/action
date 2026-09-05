@@ -1,0 +1,20 @@
+name: outputs
+on: push
+jobs:
+  job1:
+  runs-on: ubuntu-latest
+  outputs:
+    language: "${{ steps.test.output.image-version }}"
+     
+  steps:
+   - name: test
+     id: language
+     run: |
+       echo "image-version=1.0.0" >> $GITHUB_OUTPUT
+   job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+    - name: calling second job
+      run: |
+       echo "imageversion: "${{ needs.job1.ootputs.language }}"
