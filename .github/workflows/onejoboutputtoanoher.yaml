@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: checkout the code
         id: version
-        run: ls -lrt >> $GITHUB_OUTPUT
+        run: echo "image_version=2.0.0" >> $GITHUB_OUTPUT
 
   job2:
     needs: checkout
@@ -17,3 +17,4 @@ jobs:
     steps:
       - name: step
         run: echo "version = ${{ needs.checkout.outputs.new }}"
+
