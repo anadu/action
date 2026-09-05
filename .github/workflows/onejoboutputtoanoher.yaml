@@ -1,21 +1,19 @@
-name: outputs
+name: learn
 on: push
 
 jobs:
-  job1:
+  checkout:
     runs-on: ubuntu-latest
     outputs:
-      language: ${{ steps.language.outputs.image-version }}
+      new: ${{ steps.version.outputs.image_version }}
     steps:
-      - name: test
-        id: language
-        run: |
-          echo "image-version=1.0.0" >> $GITHUB_OUTPUT
+      - name: checkout the code
+        id: version
+        run: echo "image_version=2.0.0" >> $GITHUB_OUTPUT
 
   job2:
-    needs: job1
+    needs: checkout
     runs-on: ubuntu-latest
     steps:
-      - name: calling second job
-        run: |
-          echo "imageversion: ${{ needs.job1.outputs.language }}"
+      - name: step
+        run: echo "version = ${{ needs.checkout.outputs.new }}"
